@@ -3,11 +3,11 @@
 
 class Room:
     def __init__(self, name, desc):
-        self.name = name;
+        self.name = name
         self.desc = desc
     
     def get_name(self):
-        return self.name;
+        return self.name
 
     def get_description(self):
         return self.desc
