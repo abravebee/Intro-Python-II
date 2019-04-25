@@ -25,4 +25,4 @@ class Room:
         else:
             print(" You look around and see the following items: ")
             for x in self.contains:
-                print(('  {}').format(x))
+                print(('  {}').format(x.name))

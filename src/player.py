@@ -17,4 +17,4 @@ class Player:
         else:
             print(" Your Inventory: ")
             for x in self.inventory:
-                print(('  {}').format(x))
+                print(('   {}').format(x.name))

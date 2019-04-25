@@ -40,13 +40,20 @@ room["treasure"].s_to = room["narrow"]
 # Main
 #
 
+
 # Make a new player object that is currently in the 'outside' room.
 player = Player("Jane", room["outside"])
 # Write a loop that:
 #
+room["outside"].contains = ["stick", "rock", "flower"]
+room["foyer"].contains = ["torch", "skull"]
+room["overlook"].contains = ["cloth", "rabbit", "crossbow"]
+room["narrow"].contains = ["armor", "sword", "book"]
+room["treasure"].contains = ["goldpiece", "dust", "note"]
+player.inventory = ["lint", "compass", "food"]
 
-print(('Welcome to Adventure Game, {}\n'
-        'Enter h for the Help Menu and available commands.').format(player.name))
+print(('\n\n   === Welcome to Adventure Game, {} ===\n'
+       'Enter h for the Help Menu and available commands.').format(player.name))
 
 while True:
 # * Prints the current room name
@@ -81,6 +88,7 @@ while True:
         continue
     
     if len(userin) == 1:
+        command = userin[0]
         if userin[0] == 'l':
             player.current_room.print_items()
             continue
@@ -137,8 +145,11 @@ while True:
             print("Invalid command.\nPlease try a different one, or enter 'h' for the Help Menu")
 
     elif len(userin) == 2:
-        if userin[0] == 'get' or if userin[0] == 'take':
-            print("Check player.currentroom.contains for userin[1]")
+        
+
+        else:
+            print("Invalid command.\n Please try a different one, or enter 'h' for the Help Menu")
+        
 
     else:
         print("Invalid command.\n Please try a different one, or enter 'h' for the Help Menu")
