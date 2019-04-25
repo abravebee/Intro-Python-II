@@ -1,7 +1,8 @@
 from room import Room
 from player import Player
 from dictionaries import *
-import sys
+from menus import *
+from helpers import *
 
 #
 # Main
@@ -10,7 +11,7 @@ import sys
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player("Jane", room["outside"])
-player.inventory = [item["lint"], item["compass"]]
+player.items = [item["lint"], item["compass"]]
 directions = ['n', 's', 'e', 'w']
 # Write a loop that:
 print(('\n\n\n--->>> ADVENTURE GAME --->>>'
@@ -31,38 +32,22 @@ while True:
     verb = userin[0]
 
     if "help" in userin or userin == 'h':
-        print((
-        '\n === Help Menu ==='
-        '\n To play Adventure Game, enter a command to explore or interact with your environment.'
-        '\n go n -> Go North, go s -> Go South, go e -> Go East, go w -> Go West'
-        '\n i -> Inventory'
-        '\n h -> Help Menu'
-        '\n q -> Quit'
-        '\n ================='
-        ))
+        helpmenu()
         continue
 
     elif len(userin) == 1:
         if verb in ('go', 'get', 'take', 'drop'):
-            print(f'{verb} what? Please be more specific.')
+            print(f' \n{verb} ...? Be more specific.')
         elif verb in ('q', 'quit'):
-            quit_check = None
-            while quit_check not in ('y', 'n'):
-                quit_check = input(f' Really quit?'
-                                f'\n> Y/N: ').lower()
-                if quit_check == 'y':
-                    print(" See ya!")
-                    sys.exit()
-                if quit_check == 'n':
-                    print(" Returning to game...")
-                    continue
-            
+            quit_game()
+        elif verb in ('i', 'inventory'):
+            print(" Inventory: ")
+            print(player.print_items())         
         else:
             print('Invalid command.')
 
         # if verb in directions:
 
-        
     elif len(userin) == 2:
         object = userin[1]
         if verb == 'get' or verb == 'take':
@@ -80,6 +65,7 @@ while True:
                 item[object].on_drop()
             except:
                 print(("You don't have a {} to drop.").format(object))
+        
         else:
             print("Invalid command.\nPlease try a different one, or enter 'h' for the Help Menu")
     else:

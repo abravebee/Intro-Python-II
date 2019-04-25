@@ -12,7 +12,7 @@ class Room:
         self.w_to = None
     
     def __str__(self):
-        room_string = f"\n\n\n {self.name}\n"
+        room_string = f"\n\n {self.name}\n"
         room_string += f"      {self.description}\n\n"
         room_string += f" You can travel: {self.print_directions()} \n"
         room_string += f" You can see: {self.print_items()}\n\n"

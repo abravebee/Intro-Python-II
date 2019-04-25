@@ -6,18 +6,16 @@ class Player:
     def __init__(self, name, current_room):
         self.name = name
         self.current_room = current_room
-        self.inventory = []
+        self.items = []
     
     def add_item(self, item):
-        self.inventory.append(item)
+        self.items.append(item)
 
     def remove_item(self, item):
-        self.inventory.remove(item)
+        self.items.remove(item)
 
     def print_items(self):
-        if len(self.inventory) == 0:
-            print(" Your inventory is empty.")
+        if len(self.items) == 0:
+            return '\n\n Your inventory is empty.'
         else:
-            print(" Your Inventory: ")
-            for x in self.inventory:
-                print(('   {}').format(x.name))
+            return ', '.join([str(i) for i in self.items])
