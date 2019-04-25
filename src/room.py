@@ -7,11 +7,10 @@ class Room:
         self.desc = desc
         self.contains = []
     
-    def get_name(self):
-        return self.name
-
-    def get_description(self):
-        return self.desc
+    def __str__(self):
+        room_string = f"\n\n\n{self.name}\n"
+        room_string += f"      {self.desc}\n"
+        return room_string
 
     def add_item(self, item):
         self.contains.append(item)

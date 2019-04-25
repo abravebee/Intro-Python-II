@@ -11,20 +11,15 @@ from dictionaries import *
 player = Player("Jane", room["outside"])
 player.inventory = [item["lint"], item["compass"]]
 # Write a loop that:
-print(('\n\n   === Welcome to Adventure Game, {} ===\n'
-        'Enter h for the Help Menu and available commands.').format(player.name))
+print(('\n\n\n--->>> ADVENTURE GAME --->>>'
+        f'\n\nWelcome, {player.name}'
+        '\nEnter h for the Help Menu and available commands.'))
 
 while True:
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 
-    print((
-        '\n You are here: {}'
-        '\n {}\n'
-        ).format(
-            player.current_room.name,
-            player.current_room.desc,
-        ))
+    print(f'{player.current_room}')
     
 # * Waits for user input and decides what to do.
     userin = input((
