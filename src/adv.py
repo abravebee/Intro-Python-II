@@ -25,9 +25,7 @@ while True:
     print(f'{player.current_room}')
     
 # * Waits for user input and decides what to do.
-    userin = input((
-        " What would you like to do?\n"
-        "> ")).lower().split(" ")
+    userin = input(("> ")).lower().split(" ")
 
     verb = userin[0]
 
@@ -41,22 +39,20 @@ while True:
         elif verb in ('q', 'quit'):
             quit_game()
         elif verb in ('i', 'inventory'):
-            print(" Inventory: ")
-            print(player.print_items())         
+            print("\n Inventory: ")
+            print(" ", player.print_items())         
         else:
-            print('Invalid command.')
-
-        # if verb in directions:
+            invalid()
 
     elif len(userin) == 2:
         object = userin[1]
-        if verb == 'get' or verb == 'take':
+        if verb in ('get', 'take'):
             try:
                 player.add_item(item[object])
                 player.current_room.remove_item(item[object])
                 item[object].on_take()
             except:
-                print(("There is no {} to be found.").format(object))
+                print(f'\n There is no {object} to be found.')
 
         elif verb == 'drop':
             try:
@@ -64,12 +60,19 @@ while True:
                 player.current_room.add_item(item[object])
                 item[object].on_drop()
             except:
-                print(("You don't have a {} to drop.").format(object))
-        
+                print(f'\n You do not have a {object} to drop.')
+
+        elif verb == 'go':
+            direction = userin[1]
+            if direction in directions:
+                player.travel(direction)
+            else:
+                print('\n You want to go where?')
+
         else:
-            print("Invalid command.\nPlease try a different one, or enter 'h' for the Help Menu")
+            invalid()
     else:
-        print("Invalid command.\nPlease try a different one, or enter 'h' for the Help Menu")
+        invalid()
 
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.

@@ -19,3 +19,10 @@ class Player:
             return '\n\n Your inventory is empty.'
         else:
             return ', '.join([str(i) for i in self.items])
+
+    def travel(self, direction):
+        next_room = self.current_room.next_room(direction)
+        if next_room is not None:
+            self.current_room = next_room
+        else:
+            print('\n There is nothing in that direction.')

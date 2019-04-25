@@ -48,7 +48,7 @@ class Room:
         if self.w_to is not None:
             directions.append('W')
         if len(directions) < 1:
-            return "You're trapped!"
+            return "Nowhere! You're trapped!"
         else:
             return ', '.join([str(d) for d in directions])
 

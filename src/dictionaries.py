@@ -25,7 +25,7 @@ room = {
 
 
 # Link rooms together
-#room["outside"].n_to = room["foyer"]
+room["outside"].n_to = room["foyer"]
 room["foyer"].s_to = room["outside"]
 room["foyer"].n_to = room["overlook"]
 room["foyer"].e_to = room["narrow"]
@@ -35,7 +35,6 @@ room["narrow"].n_to = room["treasure"]
 room["treasure"].s_to = room["narrow"]
 
 # Declare all items
-
 item = {
     "stick": Item("stick", """It's just an ordinary stick. Probably not going to do you much good."""),
     "rock": Item("rock", """Good weight and fits just right in your hand. Maybe you can chuck it at someone's head!"""),
@@ -51,13 +50,10 @@ item = {
     "note": Item("note", """Someone has left a note behind. It's written in some kind of moon-man language you can't parse."""),
     "lint": Item("lint", """That one tiny clump of lint that gets stuck to that one loose string in your worn pockets."""),
     "compass": Item("compass", """You're the kind of cat who travels by the cardinal directions."""),
-    
 }
 
 
 # Add items to rooms
-
-
 room["outside"].items = [item["stick"], item["rock"], item["flower"]]
 room["foyer"].items = [item["torch"], item["skull"]]
 room["overlook"].items = [item["cloth"], item["rabbit"], item["crossbow"]]
