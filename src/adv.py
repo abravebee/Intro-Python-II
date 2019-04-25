@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from dictionaries import *
+import sys
 
 #
 # Main
@@ -10,6 +11,7 @@ from dictionaries import *
 # Make a new player object that is currently in the 'outside' room.
 player = Player("Jane", room["outside"])
 player.inventory = [item["lint"], item["compass"]]
+directions = ['n', 's', 'e', 'w']
 # Write a loop that:
 print(('\n\n\n--->>> ADVENTURE GAME --->>>'
         f'\n\n Welcome, {player.name}'
@@ -27,79 +29,40 @@ while True:
         "> ")).lower().split(" ")
 
     verb = userin[0]
-    
-    print("\n DEV NOTE\n","userin: ", userin, "\n\n")
 
     if "help" in userin or userin == 'h':
         print((
         '\n === Help Menu ==='
         '\n To play Adventure Game, enter a command to explore or interact with your environment.'
-        '\n n -> Go North, s -> Go South, e -> Go East, e-> Go West'
-        '\n l -> Look around'
-        '\n i -> Inventory check'
+        '\n go n -> Go North, go s -> Go South, go e -> Go East, go w -> Go West'
+        '\n i -> Inventory'
         '\n h -> Help Menu'
         '\n q -> Quit'
         '\n ================='
         ))
         continue
 
-
-    if len(userin) == 1:
-        if verb == 'l':
-            player.current_room.print_items()
-            continue
-    
-        if verb == 'i':
-            player.print_items()
-            continue
-
-        if verb == 'n':
-            try:
-                player.current_room = player.current_room.n_to
-                print("You went north.")
-            except:
-                print("You can't go that way.")
-            continue
-        
-        if verb == 's':
-            try:
-                player.current_room = player.current_room.s_to
-                print("You went south.")
-            except:
-                print("You can't go that way.")
-            continue
-
-        if verb == 'e':
-            try:
-                player.current_room = player.current_room.e_to
-                print("You went east.")
-            except:
-                print("You can't go that way.")
-            continue
-
-        if verb == 'w':
-            try:
-                player.current_room = player.current_room.w_to
-                print("You went west.")
-            except:
-                print("You can't go that way.")
-            continue
-
-        if verb == 'q':
-            quit_check = input((
-                '\nReally quit?  y/n'
-                '\n> '
-            )).lower()
-            if quit_check == 'y':
-                print("See ya!")
-                break
-            elif quit_check == 'n':
-                print("Returning to game...")
-                continue
-
+    elif len(userin) == 1:
+        if verb in ('go', 'get', 'take', 'drop'):
+            print(f'{verb} what? Please be more specific.')
+        elif verb in ('q', 'quit'):
+            quit_check = None
+            while quit_check not in ('y', 'n'):
+                quit_check = input(f' Really quit?'
+                                f'\n> Y/N: ').lower()
+                if quit_check == 'y':
+                    print(" See ya!")
+                    sys.exit()
+                if quit_check == 'n':
+                    print(" Returning to game...")
+                    continue
+            
         else:
-            print("Invalid command.\nPlease try a different one, or enter 'h' for the Help Menu")
+            print('Invalid command.')
 
+        # if verb in directions:
+
+        
     elif len(userin) == 2:
         object = userin[1]
         if verb == 'get' or verb == 'take':

@@ -30,6 +30,13 @@ class Room:
         else:
             return ', '.join([str(i) for i in self.items])
     
+    def check_items(self, item):
+        for i in self.items:
+            if i.name == item:
+                return True
+            else:
+                return False
+
     def print_directions(self):
         directions = []
         if self.n_to is not None:
@@ -44,3 +51,16 @@ class Room:
             return "You're trapped!"
         else:
             return ', '.join([str(d) for d in directions])
+
+    def next_room(self, direction):
+        if direction == 'n':
+            return self.n_to
+        elif direction == 's':
+            return self.s_to
+        elif direction == 'e':
+            return self.e_to
+        elif direction == 'w':
+            return self.w_to
+        else:
+            return None
+
