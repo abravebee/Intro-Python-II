@@ -2,26 +2,32 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, desc):
+    def __init__(self, name, description, items=[]):
         self.name = name
-        self.desc = desc
-        self.contains = []
+        self.description = description
+        self.items = items
+        self.n_to = None
+        self.s_to = None
+        self.e_to = None
+        self.w_to = None
     
     def __str__(self):
-        room_string = f"\n\n\n{self.name}\n"
-        room_string += f"      {self.desc}\n"
+        room_string = f"\n\n\n {self.name}\n"
+        room_string += f"      {self.description}\n\n"
+        room_string += f" You can travel:  \n"
+        room_string += f" You can see: \n"
         return room_string
 
     def add_item(self, item):
-        self.contains.append(item)
+        self.items.append(item)
     
     def remove_item(self, item):
-        self.contains.remove(item)
+        self.items.remove(item)
     
     def print_items(self):
         if len(self.contains) == 0:
             print(" You look around, but there are no items here!")
         else:
             print(" You look around and see the following items: ")
-            for x in self.contains:
+            for x in self.items:
                 print(('  {}').format(x.name))

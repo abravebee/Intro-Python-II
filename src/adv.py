@@ -12,8 +12,8 @@ player = Player("Jane", room["outside"])
 player.inventory = [item["lint"], item["compass"]]
 # Write a loop that:
 print(('\n\n\n--->>> ADVENTURE GAME --->>>'
-        f'\n\nWelcome, {player.name}'
-        '\nEnter h for the Help Menu and available commands.'))
+        f'\n\ nWelcome, {player.name}'
+        '\n Enter h for the Help Menu and available commands.'))
 
 while True:
 # * Prints the current room name
@@ -23,7 +23,7 @@ while True:
     
 # * Waits for user input and decides what to do.
     userin = input((
-        "What would you like to do?\n"
+        " What would you like to do?\n"
         "> ")).lower().split(" ")
 
     verb = userin[0]
