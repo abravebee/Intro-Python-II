@@ -14,9 +14,9 @@ class Room:
     def __str__(self):
         room_string = f"\n\n\n {self.name}\n"
         room_string += f"      {self.description}\n\n"
-        room_string += f" You can travel:  \n"
-        room_string += f" You can see: \n"
-        return room_string
+        room_string += f" You can travel: {self.print_directions()} \n"
+        room_string += f" You can see: {self.print_items()}\n\n"
+        return room_string 
 
     def add_item(self, item):
         self.items.append(item)
@@ -25,9 +25,22 @@ class Room:
         self.items.remove(item)
     
     def print_items(self):
-        if len(self.contains) == 0:
-            print(" You look around, but there are no items here!")
+        if self.items == None:
+            return "nothing"
         else:
-            print(" You look around and see the following items: ")
-            for x in self.items:
-                print(('  {}').format(x.name))
+            return ', '.join([str(i) for i in self.items])
+    
+    def print_directions(self):
+        directions = []
+        if self.n_to is not None:
+            directions.append('N')
+        if self.s_to is not None:
+            directions.append('S')
+        if self.e_to is not None:
+            directions.append('E')
+        if self.w_to is not None:
+            directions.append('W')
+        if len(directions) < 1:
+            return "You're trapped!"
+        else:
+            return ', '.join([str(d) for d in directions])

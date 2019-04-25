@@ -25,7 +25,7 @@ room = {
 
 
 # Link rooms together
-room["outside"].n_to = room["foyer"]
+#room["outside"].n_to = room["foyer"]
 room["foyer"].s_to = room["outside"]
 room["foyer"].n_to = room["overlook"]
 room["foyer"].e_to = room["narrow"]
@@ -58,8 +58,8 @@ item = {
 # Add items to rooms
 
 
-room["outside"].contains = [item["stick"], item["rock"], item["flower"]]
-room["foyer"].contains = [item["torch"], item["skull"]]
-room["overlook"].contains = [item["cloth"], item["rabbit"], item["crossbow"]]
-room["narrow"].contains = [item["arrow"]]
-room["treasure"].contains = [item["goldpiece"], item["dust"], item["note"]]
+room["outside"].items = [item["stick"], item["rock"], item["flower"]]
+room["foyer"].items = [item["torch"], item["skull"]]
+room["overlook"].items = [item["cloth"], item["rabbit"], item["crossbow"]]
+room["narrow"].items = [item["arrow"]]
+room["treasure"].items = [item["goldpiece"], item["dust"], item["note"]]

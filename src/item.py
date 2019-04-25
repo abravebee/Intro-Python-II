@@ -8,6 +8,10 @@ class Item:
     def __init__(self, name, desc):
         self.name = name
         self.desc = desc
+
+    def __str__(self):
+        item_string = f"{self.name}"
+        return item_string
     
     def on_take(self):
         print(("You picked up the {}.").format(self.name))
