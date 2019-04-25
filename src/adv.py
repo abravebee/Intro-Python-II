@@ -29,7 +29,7 @@ while True:
 
     verb = userin[0]
 
-    if "help" in userin or userin == 'h':
+    if "help" in userin or verb == 'h':
         helpmenu()
         continue
 
