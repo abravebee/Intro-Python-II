@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from helpers import *
 
 # Declare all the rooms
 
@@ -44,6 +45,8 @@ player = Player("Jane", room["outside"])
 # Write a loop that:
 #
 
+print(('Welcome to Adventure Game, {}\n'
+        'Enter h for the Help Menu and available commands.').format(player.name))
 
 while True:
 # * Prints the current room name
@@ -54,68 +57,92 @@ while True:
         '\n {}\n'
         ).format(
             player.current_room.name,
-            player.current_room.desc
+            player.current_room.desc,
         ))
+    
 # * Waits for user input and decides what to do.
     userin = input((
         "What would you like to do?\n"
-        "> ")).lower()
+        "> ")).lower().split(" ")
     
+    print("\n DEV NOTE\n","userin: ", userin, "\n\n")
+
     if "help" in userin or userin == 'h':
         print((
-        '\nHELP MENU'
-        '\n N > Go North, S > Go South, E > Go East, W > Go West'
-        '\n H > Help Menu'
-        '\n Q > Quit'
+        '\n === Help Menu ==='
+        '\n To play Adventure Game, enter a command to explore or interact with your environment.'
+        '\n n -> Go North, s -> Go South, e -> Go East, e-> Go West'
+        '\n l -> Look around'
+        '\n i -> Inventory check'
+        '\n h -> Help Menu'
+        '\n q -> Quit'
+        '\n ================='
         ))
         continue
-
-    if "north" in userin or userin == 'n':
-        try:
-            player.current_room = player.current_room.n_to
-            print("You went north.")
-        except:
-            print("You can't go that way.")
-        continue
     
-    if "south" in userin or userin == 's':
-        try:
-            player.current_room = player.current_room.s_to
-            print("You went south.")
-        except:
-            print("You can't go that way.")
-        continue
-
-    if "east" in userin or userin == 'e':
-        try:
-            player.current_room = player.current_room.e_to
-            print("You went east.")
-        except:
-            print("You can't go that way.")
-        continue
-
-    if "west" in userin or userin == 'w':
-        try:
-            player.current_room = player.current_room.w_to
-            print("You went west.")
-        except:
-            print("You can't go that way.")
-        continue
-
-    if "quit" in userin or userin == 'q':
-        quit_check = input((
-            '\nReally quit?  y/n'
-            '\n> '
-        )).lower()
-        if quit_check == 'y':
-            print("See ya!")
-            break
-        elif quit_check == 'n':
-            print("Returning to game...")
+    if len(userin) == 1:
+        if userin[0] == 'l':
+            player.current_room.print_items()
+            continue
+    
+        if userin[0] == 'i':
+            player.print_items()
             continue
 
+        if userin[0] == 'n':
+            try:
+                player.current_room = player.current_room.n_to
+                print("You went north.")
+            except:
+                print("You can't go that way.")
+            continue
+        
+        if userin[0] == 's':
+            try:
+                player.current_room = player.current_room.s_to
+                print("You went south.")
+            except:
+                print("You can't go that way.")
+            continue
+
+        if userin[0] == 'e':
+            try:
+                player.current_room = player.current_room.e_to
+                print("You went east.")
+            except:
+                print("You can't go that way.")
+            continue
+
+        if userin[0] == 'w':
+            try:
+                player.current_room = player.current_room.w_to
+                print("You went west.")
+            except:
+                print("You can't go that way.")
+            continue
+
+        if userin[0] == 'q':
+            quit_check = input((
+                '\nReally quit?  y/n'
+                '\n> '
+            )).lower()
+            if quit_check == 'y':
+                print("See ya!")
+                break
+            elif quit_check == 'n':
+                print("Returning to game...")
+                continue
+
+        else:
+            print("Invalid command.\nPlease try a different one, or enter 'h' for the Help Menu")
+
+    elif len(userin) == 2:
+        if userin[0] == 'get' or if userin[0] == 'take':
+            print("Check player.currentroom.contains for userin[1]")
+
     else:
-        print("userin", userin)
+        print("Invalid command.\n Please try a different one, or enter 'h' for the Help Menu")
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
